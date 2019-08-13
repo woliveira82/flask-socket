@@ -1,9 +1,11 @@
 from flask import Flask
-from flask_socketio import SocketIO
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app)
+
+@app.route('/')
+def hello():
+    return open('views/index.html').read()
+
 
 if __name__ == '__main__':
-    socketio.run(app)
+    app.run('127.0.0.1', '5000', debug=True)

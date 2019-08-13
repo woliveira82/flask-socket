@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Chat</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            section#sec_home {
+                display: none;
+                height: 100vh;
+                align-items: center;
+                text-align: center;
+            }
+            section#sec_chat {
+                display: grid;
+                grid-template-rows:1fr min-content;
+                height: 100vh
+            }
+            section#sec_chat form {
+                display: grid;
+                grid-template-columns:1fr min-content;
+                padding: 1em;
+                background: #9c9;
+            }
+            section#sec_chat form input {
+                padding: 0.5em;
+            }
+            section#sec_chat form button {
+                padding: 0.5em 1.5em;
+            }
+            div#d_message {
+                overflow: auto;
+                word-wrap: break-word;
+            }
+            div#d_message p {
+                margin: 0.5em;
+                padding: 1em;
+                background: #bbd;
+                border-radius: 0.5em;
+            }
+        </style>
+    </head>
+    <body>
+        <section id="sec_home">
+            <form>
+                <label>Nome: <input placeholder="Digite seu nome" id="i_name" required></label>
+                <button>Entrar</button>
+            </form>
+        </section>
+        <section id="sec_chat">
+            <div id="d_message">
+                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
+                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
+                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
+                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
+                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
+                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
+                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
+                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
+                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
+                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
+                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
+                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
+                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
+            </div>
+            <form>
+                <input id="i_message" placeholder="Digite sua mensagem" required>
+                <button>Enviar</button>
+            </form>
+        </section>
+    </body>
+    <script>
+        var i_name = document.querySelector('#i_name');
+        var i_message = document.querySelector('#i_message');
+        var sec_home = document.querySelector('#sec_home');
+        var sec_chat = document.querySelector('#sec_chat');
+
+        sec_home.addEventListener('submit', function(ev){
+            this.style.display='none';
+            sec_chat.style.display='grid';
+            ev.preventDefault();
+        });
+    </script>
+</html>

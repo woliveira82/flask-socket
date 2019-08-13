@@ -1,4 +1,5 @@
 from flask_socketio import send, emit
+from flask import render_template
 
 @socketio.on('message')
 def handle_message(message):
@@ -11,3 +12,13 @@ def handle_json(json):
 @socketio.on('my event')
 def handle_my_custom_event(json):
     emit('my response', json)
+
+
+
+
+
+@app.route("/")
+def index():
+    print('index')
+    return render_template('index.html')
+#    return open("index.html").read()
