@@ -11,13 +11,13 @@
                 list-style: none;
             }
             section#sec_home {
-                display: none;
+                display: grid;
                 height: 100vh;
                 align-items: center;
                 text-align: center;
             }
             section#sec_chat {
-                display: grid;
+                display: none;
                 grid-template-rows:1fr min-content;
                 height: 100vh
             }
@@ -47,43 +47,55 @@
     </head>
     <body>
         <section id="sec_home">
-            <form>
+            <form id="frm_home">
                 <label>Nome: <input placeholder="Digite seu nome" id="i_name" required></label>
                 <button>Entrar</button>
             </form>
         </section>
         <section id="sec_chat">
-            <div id="d_message">
-                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
-                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
-                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
-                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
-                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
-                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
-                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
-                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
-                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
-                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
-                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
-                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
-                <p><strong>Fulano:</strong> resto da mensagem completa e toatal sem repeticão de palavras toscas. Alias tosco é uma palavra ridicula.</p>
-            </div>
-            <form>
+            <div id="d_message"></div>
+            <form id="frm_chat">
                 <input id="i_message" placeholder="Digite sua mensagem" required>
                 <button>Enviar</button>
             </form>
         </section>
     </body>
-    <script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8">
+        /*var socket = io.connect();*/
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
         var i_name = document.querySelector('#i_name');
         var i_message = document.querySelector('#i_message');
         var sec_home = document.querySelector('#sec_home');
+        var frm_home = document.querySelector('#frm_home');
         var sec_chat = document.querySelector('#sec_chat');
+        var frm_chat = document.querySelector('#frm_chat');
+        var d_message = document.querySelector('#d_message');
 
-        sec_home.addEventListener('submit', function(ev){
-            this.style.display='none';
-            sec_chat.style.display='grid';
+        function messageReceive(name, message){
+            return '<p><strong>' + name + ': </strong>' + message + '</p>';
+        }
+
+        frm_home.addEventListener('submit', function(ev){
+            sec_home.style.display = 'none';
+            sec_chat.style.display = 'grid';
             ev.preventDefault();
         });
+
+        frm_chat.addEventListener('submit', function(ev){
+            socket.emit('message', {
+                name: i_name.value,
+                message: i_message.value
+            });
+            ev.preventDefault();
+            i_message.value = '';
+        });
+
+        socket.on('message', function(data) {
+            d_message.innerHTML += messageReceive(data.name, data.message);
+        });
+
+
+
     </script>
 </html>
