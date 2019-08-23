@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Chat</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">       
+        </style>
+    </head>
+    <body>
+        <section id="sec_home">
+            <form id="frm_home">
+                <label>Nome: <input placeholder="Digite seu nome" id="i_name" required></label>
+                <button>Entrar</button>
+            </form>
+        </section>
+        <section id="sec_chat">
+            <div id="d_message"></div>
+            <form id="frm_chat">
+                <input id="i_message" placeholder="Digite sua mensagem" required>
+                <button>Enviar</button>
+            </form>
+        </section>
+    </body>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='index.js') }}" charset="utf-8"></script>
+</html>

@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+section#sec_home {
+    display: grid;
+    height: 100vh;
+    align-items: center;
+    text-align: center;
+}
+section#sec_chat {
+    display: none;
+    grid-template-rows:1fr min-content;
+    height: 100vh
+}
+section#sec_chat form {
+    display: grid;
+    grid-template-columns:1fr min-content;
+    padding: 1em;
+    background: #9c9;
+}
+section#sec_chat form input {
+    padding: 0.5em;
+}
+section#sec_chat form button {
+    padding: 0.5em 1.5em;
+}
+div#d_message {
+    overflow: auto;
+    word-wrap: break-word;
+}
+div#d_message p {
+    margin: 0.5em;
+    padding: 1em;
+    background: #bbd;
+    border-radius: 0.5em;
+}
